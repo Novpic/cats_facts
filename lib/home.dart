@@ -21,6 +21,20 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
           children: [
+            FutureBuilder(
+              future: (){},
+              builder: (context,snapshot){
+                if(snapshot.hasData){
+                  return Text(snapshot.toString(),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Colors.black12));
+                }else if(snapshot.hasError){
+                  return const Text('Error Miau',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Colors.black12));
+                }else{
+                  return CircularProgressIndicator();
+                }
+
+            }),
             Text(catfact,
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Colors.black12),),
             ElevatedButton(
