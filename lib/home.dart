@@ -1,16 +1,20 @@
+import 'package:cats_facts/services/cat_fact_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Home extends StatefulWidget {
+class Home extends ConsumerStatefulWidget {
   const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  ConsumerState<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends ConsumerState<Home> {
   String catfact = 'Click button to generate new Cat Fact';
   @override
   Widget build(BuildContext context) {
+
+    final catFactProvider = ref.watch(catServiceProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text('Cat Facts')),
@@ -22,10 +26,10 @@ class _HomeState extends State<Home> {
 
           children: [
             FutureBuilder(
-              future: (){},
+              future: catFactProvider.getCatFact(),
               builder: (context,snapshot){
                 if(snapshot.hasData){
-                  return Text(snapshot.toString(),
+                  return Text(snapshot.data!.text,
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Colors.black12));
                 }else if(snapshot.hasError){
                   return const Text('Error Miau',
@@ -38,7 +42,11 @@ class _HomeState extends State<Home> {
             Text(catfact,
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Colors.black12),),
             ElevatedButton(
-              onPressed: (){},
+              onPressed: (){
+                setState(() {
+                  
+                });
+              },
               child: Text('Fact'),
               style: ElevatedButton.styleFrom(backgroundColor: Colors.pinkAccent[100]),)
           ]
