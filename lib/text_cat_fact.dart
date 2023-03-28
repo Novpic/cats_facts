@@ -10,19 +10,30 @@ class TextCatFact extends StatefulWidget {
 }
 
 class _TextCatFactState extends State<TextCatFact> {
+  final colorizeColors = [
+    Colors.purple,
+    Colors.blue,
+    Colors.yellow,
+    Colors.purple,
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      key: UniqueKey(),
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.width/3,
+      height: MediaQuery.of(context).size.width / 3,
       child: AnimatedTextKit(
-      animatedTexts: [
-      WavyAnimatedText(
-        widget.text,
-        textStyle: TextStyle(fontSize: 70.0, fontFamily: 'Canterbury'),
+        animatedTexts: [
+          ColorizeAnimatedText(
+            textAlign: TextAlign.center,
+            widget.text,
+            colors: colorizeColors,
+            textStyle: TextStyle(fontSize: 70.0, fontFamily: 'Canterbury'),
+          ),
+        ],
+        isRepeatingAnimation: false,
       ),
-      ],
-    ),
     );
   }
 }
