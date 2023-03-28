@@ -19,6 +19,7 @@ class _HomeState extends ConsumerState<Home> {
   void initState() {
     super.initState();
     player = AudioPlayer();
+    player!.audioCache = AudioCache(prefix: '');
     
 
   }
@@ -54,8 +55,7 @@ class _HomeState extends ConsumerState<Home> {
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Colors.black12),),
             ElevatedButton(
               onPressed: ()async {
-                await player!.setSource(AssetSource('assets/cat_meow.wav'));
-                await player!.resume();
+                await player!.play(AssetSource('audios/cat_meow.mp3'));
                 setState( () {
   
                 });
