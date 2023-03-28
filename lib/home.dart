@@ -60,18 +60,23 @@ class _HomeState extends ConsumerState<Home> {
                 catfact,
                 style: TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.w300,
+                    fontWeight: FontWeight.bold,
                     color: Colors.black12),
               ),
               Padding(padding: EdgeInsets.all(10)),
-              ElevatedButton(
-                onPressed: () async {
-                  await player!.play(AssetSource('audios/cat_meow.mp3'));
-                  setState(() {});
-                },
-                child: Text('Fact'),
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.pinkAccent[100]),
+              Container(
+                width: 100,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    await player!.play(AssetSource('audios/cat_meow.mp3'));
+                    setState(() {});
+                  },
+                  child: Text('Fact',style: TextStyle(fontSize: 20),),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.pinkAccent[100],
+                      ),
+                ),
               )
             ],
           ),
